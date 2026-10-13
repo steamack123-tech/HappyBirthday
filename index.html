@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2a0912">
+<title>Камилла, с днём рождения</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Manrope:wght@400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+@property --h{syntax:'<number>';inherits:true;initial-value:350}
+@property --x1{syntax:'<number>';inherits:true;initial-value:15}
+@property --y1{syntax:'<number>';inherits:true;initial-value:0}
+@property --x2{syntax:'<number>';inherits:true;initial-value:100}
+@property --y2{syntax:'<number>';inherits:true;initial-value:100}
+@property --x3{syntax:'<number>';inherits:true;initial-value:70}
+@property --y3{syntax:'<number>';inherits:true;initial-value:100}
+:root{--h:350;--x1:15;--y1:0;--x2:100;--y2:100;--gold:#e6c36a;transition:--h 2.4s ease,--x1 2.8s ease,--y1 2.8s ease,--x2 3.2s ease,--y2 3.2s ease;animation:flow 22s ease-in-out infinite}
+@keyframes flow{0%,100%{--x3:70;--y3:100}50%{--x3:20;--y3:35}}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{font-family:Manrope,system-ui,sans-serif;color:#fff;
+background:radial-gradient(90% 60% at calc(var(--x1)*1%) calc(var(--y1)*1%),hsl(var(--h) 85% 42%),transparent 62%),radial-gradient(90% 65% at calc(var(--x2)*1%) calc(var(--y2)*1%),hsl(calc(var(--h) + 28) 90% 46%),transparent 60%),radial-gradient(75% 55% at calc(var(--x3)*1%) calc(var(--y3)*1%),hsl(calc(var(--h) - 14) 85% 40%),transparent 65%),hsl(var(--h) 60% 9%)}
+.disp{font-family:Unbounded,Manrope,sans-serif}
+.gold{background:linear-gradient(100deg,#fbeab0,#e6c36a 45%,#b8892c 70%,#fbeab0);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:220% 100%;animation:shine 7s linear infinite}
+.scene{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;overflow-y:auto;
+padding:max(28px,env(safe-area-inset-top)) 24px max(28px,env(safe-area-inset-bottom));opacity:0;pointer-events:none;transform:scale(.97);filter:blur(10px);visibility:hidden;transition:opacity .7s,transform .7s,filter .7s,visibility 0s .7s}
+.scene.on{opacity:1;pointer-events:auto;transform:none;filter:none;visibility:visible;transition:opacity .7s,transform .7s,filter .7s,visibility 0s}
+.rise{opacity:0}
+.scene.on .rise{animation:rise .9s var(--d,0s) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+h1,h2{font-family:Unbounded,sans-serif;font-weight:700;line-height:1.15}
+h1{font-size:clamp(24px,7vw,36px)}
+p.lead{font-size:17px;line-height:1.55;max-width:32ch;color:rgba(255,255,255,.88)}
+.glass{background:rgba(255,255,255,.09);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.2);border-radius:28px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.btn{max-width:100%;text-wrap:balance;touch-action:manipulation;font-family:Unbounded,sans-serif;font-weight:500;font-size:15px;color:#fff;padding:17px 30px;border-radius:99px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer;transition:transform .15s}
+.btn:active{transform:scale(.95)}
+.btn.main{background:linear-gradient(120deg,#f6e3a1,#d9a93f);color:#1a1205;border:0;box-shadow:0 10px 30px rgba(230,195,106,.35)}
+.next{opacity:0;pointer-events:none;filter:blur(10px);transform:translateY(12px);transition:opacity .9s,filter .9s,transform .9s}
+.next.show{opacity:1;pointer-events:auto;filter:none;transform:none}
+
+/* scene 1: scratch */
+.card{position:relative;width:min(100%,330px);min-height:170px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:20px;font-size:16px;line-height:1.45}
+#sc{position:absolute;inset:0;width:100%;height:100%;touch-action:none;transition:opacity .9s}
+
+/* scene 3 */
+.love{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(64px,21vw,112px);line-height:1;filter:drop-shadow(0 0 28px rgba(230,195,106,.45))}
+.love span{display:block;opacity:0;background:linear-gradient(100deg,#fbeab0,#e6c36a 45%,#b8892c 70%,#fbeab0);-webkit-background-clip:text;background-clip:text;color:transparent}
+#s3.on .love span{animation:word 1.5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes word{from{opacity:0;letter-spacing:.35em;filter:blur(14px)}to{opacity:1;letter-spacing:0;filter:none}}
+.line{height:1px;width:0;background:var(--gold)}
+#s3.on .line{animation:ln 1.6s 3s forwards}
+@keyframes ln{to{width:min(60vw,240px)}}
+
+/* scene 4 */
+#s4{justify-content:flex-start}
+#gate,#rv{margin:auto}
+#gate{display:flex;flex-direction:column;align-items:center;gap:22px;transition:opacity .6s,transform .6s}
+#gate.gone{opacity:0;transform:scale(1.12);pointer-events:none}
+.frame{position:relative;width:min(76vw,300px);aspect-ratio:3/4;perspective:900px;cursor:pointer;border-radius:10px;
+background:radial-gradient(circle at 50% 50%,#fff3c4,var(--gold) 40%,#6b4a10);box-shadow:0 0 0 1px var(--gold),0 0 60px rgba(230,195,106,.35)}
+.door{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(160deg,#5c1832,#1d0710);border:1px solid var(--gold);transition:transform 1.1s cubic-bezier(.6,0,.2,1)}
+.door::after{content:'';position:absolute;top:0;bottom:0;width:14px;background:var(--gold);opacity:.85}
+.l{left:0;transform-origin:left;border-radius:10px 0 0 10px}.l::after{right:0}
+.r{right:0;transform-origin:right;border-radius:0 10px 10px 0}.r::after{left:0}
+.frame.open .l{transform:rotateY(-112deg)}.frame.open .r{transform:rotateY(112deg)}
+.seal{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px;border-radius:50%;z-index:2;display:grid;place-items:center;
+font:700 30px 'Playfair Display',serif;color:#1a1205;background:radial-gradient(circle at 35% 30%,#fff1b8,#d9a93f 60%,#8a6212);box-shadow:0 4px 18px rgba(0,0,0,.5);animation:pulse 2s infinite;transition:opacity .4s}
+.frame.open .seal{opacity:0}
+@keyframes pulse{50%{transform:scale(1.1)}}
+#rv{display:none;flex-direction:column;align-items:center;gap:30px;width:100%;padding:20px 0 28px}
+#rv.on{display:flex}#rv.on>*{animation:rise .9s both}#rv.on>:nth-child(2){animation-delay:.35s}#rv.on>:nth-child(3){animation-delay:.7s}#rv.on>:nth-child(4){animation-delay:1s}
+
+.poster{position:relative;overflow:hidden;width:min(86vw,350px);aspect-ratio:3/4;background:radial-gradient(120% 70% at 50% 0%,hsl(calc(var(--h) + 10) 80% 42%),transparent 70%),linear-gradient(165deg,hsl(var(--h) 65% 26%),hsl(calc(var(--h) - 8) 65% 12%));color:#f6ead0;border:1px solid var(--gold);outline:1px solid var(--gold);outline-offset:-9px;padding:20px 22px;display:flex;flex-direction:column;font-family:'Playfair Display',Georgia,serif;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.p-top{display:flex;justify-content:space-between;font:600 9px Manrope,sans-serif;letter-spacing:.3em;color:var(--gold);padding-top:4px}
+.p-mast{font-weight:900;font-size:clamp(34px,13vw,54px);font-size:16.5cqw;white-space:nowrap;text-indent:.04em;line-height:1.05;letter-spacing:.04em;text-align:center;border-top:2px solid var(--gold);border-bottom:1px solid var(--gold);margin:10px 0 0;padding:6px 0 2px}
+.p-mid{flex:1;display:grid;place-items:center}
+.ring{width:56%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1px solid var(--gold);box-shadow:0 0 0 7px transparent,0 0 0 8px var(--gold);font:italic 900 clamp(70px,26vw,118px)/1 'Playfair Display',serif;background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.2),rgba(255,255,255,.04) 70%)}
+.p-bot{border-top:1px solid var(--gold);padding-top:10px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;text-align:left}
+.p-bot b{font-size:clamp(18px,6vw,26px);font-size:8.6cqw;line-height:.95;font-weight:900;letter-spacing:.04em}
+.p-bot small{font:400 11px/1.4 Manrope,sans-serif;text-align:right;color:#f3e3c4}
+
+.gift{position:relative;width:150px;height:140px;cursor:pointer}
+.gb,.gl{position:absolute;background:linear-gradient(#6e1f3b,#260813);border:1px solid var(--gold);border-radius:6px}
+.gb{bottom:0;left:0;right:0;height:96px}.gl{top:0;left:-8px;right:-8px;height:44px;z-index:2;transition:transform .8s cubic-bezier(.3,1.7,.5,1)}
+.gb::after,.gl::after{content:'';position:absolute;left:50%;width:22px;margin-left:-11px;top:0;bottom:0;background:linear-gradient(90deg,#b8892c,#fbeab0,#b8892c)}
+.gl::before{content:'';position:absolute;left:50%;top:-18px;width:34px;height:22px;margin-left:-17px;border:4px solid var(--gold);border-radius:50% 50% 0 0;z-index:1}
+.gift.open .gl{transform:translate(8px,-52px) rotate(-14deg)}
+.items span{position:absolute;left:50%;top:60px;margin-left:-17px;font-size:34px;opacity:0;transition:transform 1s cubic-bezier(.2,1.4,.4,1) var(--t),opacity .4s var(--t)}
+.gift.open .items span{opacity:1;transform:translate(var(--x),var(--y))}
+.acts{display:flex;gap:12px;width:min(86vw,350px)}.acts .btn{flex:1;padding:16px 8px;font-size:14px}
+.cf{position:fixed;top:-14px;width:7px;height:12px;z-index:30;pointer-events:none;animation:fall linear both}
+@keyframes fall{to{transform:translate(var(--x),108vh) rotate(720deg)}}
+@media(prefers-reduced-motion:reduce){.scene.on .rise{animation-duration:.01s}}
+.orb{position:fixed;border-radius:50%;filter:blur(55px);opacity:.33;pointer-events:none;background:hsl(calc(var(--h) + 30) 90% 60%);animation:drift 15s ease-in-out infinite alternate}
+.o1{width:220px;height:220px;left:-70px;top:10%}.o2{width:270px;height:270px;right:-100px;top:48%;animation-duration:19s;animation-delay:-6s}.o3{width:170px;height:170px;left:28%;bottom:-50px;animation-delay:-10s}
+@keyframes drift{to{transform:translate(45px,-70px) scale(1.25)}}
+@keyframes shine{to{background-position:-220% 0}}
+.scene.on .gold.rise{animation:rise .9s var(--d,0s) both,shine 7s linear infinite}
+.btn.main{position:relative;overflow:hidden}
+.btn.main::after{content:'';position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:sweep 3.4s infinite}
+@keyframes sweep{55%,100%{left:130%}}
+.sp{position:fixed;z-index:40;pointer-events:none;color:var(--gold);font-size:14px;margin:-7px;animation:spk .8s ease-out forwards}
+@keyframes spk{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+.sub{font-size:14px;line-height:1.5;max-width:30ch;color:rgba(255,255,255,.74)}
+.poster::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(230,195,106,.2) 50%,transparent 60%);transform:translateX(-100%);animation:psw 4.5s 1.2s infinite}
+@keyframes psw{to{transform:translateX(100%)}}
+.gwrap{display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:70px}
+.fin{width:min(86vw,350px);padding:26px 24px;font-size:16px;line-height:1.55}
+/* свечи */
+.cake{position:relative;width:210px;height:190px;margin-top:10px}
+.tier{position:absolute;border-radius:14px;border:1px solid var(--gold);background:linear-gradient(#8c2b4c,#3a0e20)}
+.t2{bottom:0;left:0;width:210px;height:72px}.t1{bottom:72px;left:35px;width:140px;height:56px}
+.tier::before{content:'';position:absolute;top:0;left:0;right:0;height:14px;border-radius:14px 14px 40% 40%;background:linear-gradient(#fbeab0,#d9a93f)}
+.cd{position:absolute;bottom:128px;width:8px;height:36px;border-radius:3px;background:linear-gradient(#fff,#cfc6ea)}
+.cd:nth-child(1){left:62px}.cd:nth-child(2){left:101px}.cd:nth-child(3){left:140px}
+.cd::before{content:'';position:absolute;left:50%;bottom:100%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:rgba(255,255,255,.5);opacity:0}
+.fl{position:absolute;left:50%;bottom:100%;width:14px;height:22px;margin:0 0 3px -7px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:radial-gradient(#fff7cf 20%,#ffb347 62%,rgba(255,120,40,0) 72%);transform-origin:50% 100%;animation:flick .3s infinite alternate;box-shadow:0 0 22px 6px rgba(255,180,70,.45)}
+@keyframes flick{to{transform:scale(.92,1.08) rotate(-3deg)}}
+.bl .fl{animation:lean .25s infinite alternate}
+@keyframes lean{to{transform:rotate(22deg) scaleY(.75)}}
+.out .fl{animation:none;opacity:0;transform:scale(0);transition:.5s}
+.out .cd::before{animation:smoke 2s .1s}
+@keyframes smoke{from{opacity:.8}to{opacity:0;transform:translateY(-60px) scale(6)}}
+#blow{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+/* карты */
+.fcs{display:flex;gap:10px;width:min(100%,350px)}
+.fc{flex:1;height:200px;cursor:pointer;perspective:700px;animation:fl 3s ease-in-out infinite alternate}
+.fc:nth-child(2){animation-delay:-1s}.fc:nth-child(3){animation-delay:-2s}
+@keyframes fl{to{transform:translateY(-8px)}}
+.in{position:relative;width:100%;height:100%;transition:transform .9s cubic-bezier(.3,1.3,.5,1);transform-style:preserve-3d}
+.ff,.fb{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:grid;place-items:center}
+.ff{font-size:34px;color:var(--gold);border:1px solid var(--gold);background:repeating-linear-gradient(45deg,rgba(230,195,106,.14) 0 6px,transparent 6px 12px),rgba(255,255,255,.08)}
+.fb{transform:rotateY(180deg);padding:14px 10px;font-size:13px;line-height:1.4;font-weight:600;text-align:center;background:linear-gradient(160deg,#fbeab0,#d9a93f);color:#1a1205}
+.scene{overflow-x:hidden}
+.next.show:active{transform:scale(.95)}
+.poster{container-type:inline-size}
+#rv.on .poster>*{animation:rise 1s .6s both}
+#rv.on .poster>:nth-child(2){animation-delay:.85s}#rv.on .poster>:nth-child(3){animation-delay:1.1s}#rv.on .poster>:nth-child(4){animation-delay:1.35s}
+.em{position:fixed;bottom:-12px;border-radius:50%;background:rgba(255,205,170,.75);filter:blur(1px);pointer-events:none;animation:up linear infinite}
+@keyframes up{from{transform:translateY(0);opacity:0}15%{opacity:.8}to{transform:translateY(-112vh) translateX(var(--dx));opacity:0}}
+/* подарки */
+#gm{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%}
+.field{position:relative;width:100%;max-width:360px;height:min(52vh,380px);overflow:hidden;border-radius:24px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06)}
+.gf{position:absolute;top:-70px;left:var(--l,50%);font-size:38px;line-height:1;padding:10px;margin:-10px;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation;filter:hue-rotate(var(--r,0deg))}
+.gf.run{animation:drop var(--s) linear var(--w) both}
+@keyframes drop{from{top:-70px;transform:rotate(-12deg)}to{top:100%;transform:rotate(12deg)}}
+.gf.got{animation:catch .5s forwards;pointer-events:none}
+@keyframes catch{40%{transform:scale(1.6)}to{transform:scale(2.3);opacity:0;filter:blur(8px)}}
+.cnt{padding:9px 20px;border-radius:99px;font:500 14px Unbounded,sans-serif}
+#pw{display:none;width:min(100%,340px)}#pw h2{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(26px,7.6vw,32px);line-height:1.28;padding:0 .08em;text-wrap:balance}
+#pw::before,#pw::after{content:'';display:block;width:56px;height:1px;background:var(--gold);margin:0 auto}#pw::before{margin-bottom:22px}#pw::after{margin-top:22px}
+#s6.done #gm{display:none}#s6.done #pw{display:block;animation:rise 1.2s both}
+/* карты: выбранная */
+.fc{position:relative}
+.fc.pick{animation:lift 1.2s cubic-bezier(.2,1.2,.3,1) forwards;z-index:3}
+@keyframes lift{to{transform:translateY(-6px) scale(1.16)}}
+.fc.dim{animation:none;opacity:.28;filter:blur(3px);transform:scale(.88);transition:.8s}
+.fc.pick .in{animation:spin 1.6s cubic-bezier(.25,.9,.3,1) forwards}
+@keyframes spin{0%{transform:rotateY(0)}55%{transform:rotateY(400deg) scale(1.08)}100%{transform:rotateY(540deg)}}
+.fc.pick::before{content:'';position:absolute;left:50%;top:50%;width:340px;height:340px;margin:-170px;border-radius:50%;pointer-events:none;background:repeating-conic-gradient(rgba(255,214,150,.45) 0 7deg,transparent 7deg 18deg);-webkit-mask:radial-gradient(circle,#000 8%,transparent 66%);mask:radial-gradient(circle,#000 8%,transparent 66%);animation:rays 7s linear infinite,fin 1s both}
+@keyframes rays{to{transform:rotate(360deg)}}@keyframes fin{from{opacity:0}}
+.fc.pick .fb{box-shadow:0 0 44px rgba(255,200,120,.85)}
+.fc.pick .fb div{animation:rise .9s 1.2s both}
+.fb b{display:block;font:500 11px Unbounded,sans-serif;margin-bottom:8px;opacity:.7}
+.fcs .fc{height:214px}.fb{padding:12px 8px}
+.ic{display:block;position:relative;font-size:34px;line-height:44px;height:44px;margin-bottom:4px}
+.ic::before,.ic::after{position:absolute;opacity:0;pointer-events:none}
+.fc.show .ic{animation:icn 2.4s 1.6s ease-in-out infinite}
+@keyframes icn{50%{transform:translateY(-4px) rotate(-6deg)}}
+.ic.g::before,.ic.g::after{content:'✦';color:#fff;text-shadow:0 0 8px #fff;font-size:15px;top:-4px}
+.ic.g::before{left:30%}.ic.g::after{right:30%}
+.fc.show .ic.g{animation:clink 1.8s 1.6s infinite}
+.fc.show .ic.g::before{animation:flash 1.8s 1.6s infinite}.fc.show .ic.g::after{animation:flash 1.8s 1.85s infinite}
+@keyframes clink{0%,55%{transform:rotate(0) scale(1)}65%{transform:rotate(-12deg) scale(1.2)}80%{transform:rotate(8deg) scale(1.1)}100%{transform:rotate(0) scale(1)}}
+@keyframes flash{0%,55%{opacity:0;transform:scale(.3)}68%{opacity:1;transform:scale(1.3)}100%{opacity:0;transform:scale(1.7)}}
+.fc.rev{opacity:1;filter:none;transform:scale(.94)}
+.fc.rev .in{animation:flipr 1.1s cubic-bezier(.3,1.2,.4,1) forwards}
+@keyframes flipr{to{transform:rotateY(180deg)}}
+.fc.rev .fb div{animation:rise .9s .7s both}
+.fc.rev .fb{box-shadow:0 0 26px rgba(255,200,120,.45)}
+.ic.p::before,.ic.p::after{content:'';top:10px;width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 6px rgba(255,255,255,.8)}
+.ic.p::before{left:38%}.ic.p::after{left:56%}
+.fc.show .ic.p::before{animation:kern 1.4s 1.7s infinite}.fc.show .ic.p::after{animation:kern 1.4s 2.2s infinite}
+@keyframes kern{0%{transform:translateY(8px) scale(.4);opacity:0}25%{opacity:1}60%{transform:translateY(-16px) scale(1)}100%{transform:translateY(-4px) scale(.8);opacity:0}}
+.ic.w::before,.ic.w::after{content:'✦';color:#fff;text-shadow:0 0 8px #fff;font-size:15px;top:-4px}
+.ic.w::before{left:26%}.ic.w::after{right:26%}
+.fc.show .ic.w::before{animation:flash 1.6s 1.6s infinite}.fc.show .ic.w::after{animation:flash 1.6s 2.1s infinite}
+body{-webkit-text-size-adjust:100%;overflow-wrap:break-word}
+h1,h2,.lead,.sub,.fb div{text-wrap:balance}
+.sub{max-width:34ch}
+.scene{justify-content:center;justify-content:safe center}
+/* звёзды */
+.sky2{width:min(100%,340px);touch-action:none;user-select:none;-webkit-user-select:none}
+#hs{display:block;width:100%;height:auto;overflow:visible;touch-action:none}
+.tw{animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.2}}
+.st .halo{fill:rgba(255,220,170,.28);transform-box:fill-box;transform-origin:center}
+.st .core{fill:#fff3c4}
+.st.nx .halo{animation:hp 1.2s ease-in-out infinite}
+@keyframes hp{50%{transform:scale(1.8);opacity:.25}}
+.st.on .halo{fill:rgba(255,214,150,.5)}
+.st.on .core{filter:drop-shadow(0 0 5px #ffd98a)}
+.ln{fill:none;stroke:#ffe3a8;stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:dl .5s ease forwards;filter:drop-shadow(0 0 3px rgba(255,214,150,.8))}
+@keyframes dl{to{stroke-dashoffset:0}}
+#rb{stroke:#ffe3a8;stroke-opacity:.6;stroke-width:1.6;stroke-dasharray:3 4}
+.hf{fill:url(#hg);opacity:0;transform-box:fill-box;transform-origin:center}
+.done .hf{animation:hin 1.2s forwards,beat 1.3s 1.2s ease-in-out infinite}
+@keyframes hin{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes beat{50%{transform:scale(1.06)}}
+.items span{z-index:3}
+/* правки: выравнивание и мелкие баги */
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.p-top span:last-child{margin-right:-.3em}
+.fcs .fc{height:228px}
+.fb div{hyphens:auto;-webkit-hyphens:auto}
+.fin .disp{text-wrap:balance}
+.fin p:last-child{text-wrap:pretty}
+.frame{touch-action:none}
+#rv{padding-top:44px}
+#cake.out+#blow{opacity:.35;pointer-events:none;transition:opacity .5s}
+.sky2{padding:14px;border-radius:28px;background:radial-gradient(120% 90% at 50% 0%,rgba(120,110,255,.22),transparent 70%),rgba(8,6,36,.55);border:1px solid rgba(255,255,255,.16);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.num{font:600 9px Manrope,sans-serif;fill:rgba(255,255,255,.55);text-anchor:middle;dominant-baseline:central;pointer-events:none;transition:opacity .6s}
+.done .num{opacity:0}
+.fcs{margin:26px 0 18px}
+</style>
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+<!-- Старт -->
+<section class="scene on" id="s0">
+  <h1 class="gold rise" style="--d:.2s">Камилла,<br>с днём рождения!</h1>
+  <p class="lead rise" style="--d:.7s">Пусть этот год будет лёгким на подъём и щедрым на радость.</p>
+  <button class="btn main rise" style="--d:1.1s" id="go">Открыть поздравление</button>
+</section>
+
+<!-- 1. Юмор + скретч -->
+<section class="scene" id="s1">
+  <h1 class="gold rise" style="--d:.2s">Первое пожелание</h1>
+  <p class="sub rise" style="--d:.5s">Сотри золотую фольгу пальцем.</p>
+  <div class="card glass rise" style="--d:.8s"><span>🎁 Пусть в твоей жизни случаются встречи, после которых всё меняется к лучшему, и моменты, которые хочется поставить на паузу!</span><canvas id="sc"></canvas></div>
+  <button class="btn main next" id="n1">Дальше</button>
+</section>
+
+<!-- Свечи -->
+<section class="scene" id="s5">
+  <h2 class="gold rise">Загадай желание</h2>
+  <p class="lead rise" id="cd-t" style="--d:.3s">Зажми кнопку и задуй свечи. Желание — про себя, оно у тебя наверняка давно готово.</p>
+  <div class="cake rise" id="cake" style="--d:.5s"><div class="cd"><i class="fl"></i></div><div class="cd"><i class="fl"></i></div><div class="cd"><i class="fl"></i></div><div class="tier t1"></div><div class="tier t2"></div></div>
+  <button class="btn glass" id="blow">Зажать и дуть</button>
+  <button class="btn main next" id="n4">Дальше</button>
+</section>
+
+<!-- Подарки -->
+<section class="scene" id="s6">
+  <div id="gm">
+    <h2 class="gold rise">Лови подарки</h2>
+    <p class="sub rise" style="--d:.2s">Тапай по падающим коробкам. Поймай все — и узнаешь главное.</p>
+    <div class="field rise" id="field" style="--d:.4s"></div>
+    <div class="cnt glass rise" id="cnt" style="--d:.5s">0 / 8</div>
+  </div>
+  <div id="pw"><h2 class="gold pwt">Ты стала на год старше, но у тебя ещё есть порох в пороховнице</h2></div>
+  <button class="btn main next" id="n5">Дальше</button>
+</section>
+
+<!-- Карты -->
+<section class="scene" id="s7">
+  <h2 class="gold rise">Выбери карту</h2>
+  <p class="lead rise" id="ct" style="--d:.2s;font-size:15px">Три карты, три подарка. Выбери одну — остальные останутся тайной.</p>
+  <div class="fcs rise" id="fcs" style="--d:.4s"></div>
+  <button class="btn main next" id="n6">Дальше</button>
+</section>
+
+<!-- Звёзды -->
+<section class="scene" id="s8">
+  <h2 class="gold rise">Соедини звёзды</h2>
+  <p class="sub rise" id="hint" style="--d:.2s">Веди пальцем от звезды к звезде, начиная со светящейся.</p>
+  <div class="sky2 rise" style="--d:.4s"><svg id="hs" viewBox="0 0 300 264"></svg></div>
+</section>
+
+<!-- 3. Признание -->
+<section class="scene" id="s3">
+  <div class="love"><span style="animation-delay:.3s">Я</span><span style="animation-delay:1.1s">люблю</span><span style="animation-delay:1.9s">тебя</span></div>
+  <div class="line"></div>
+  <p class="sub rise" style="--d:3.4s">Просто хочу, чтобы ты знала.</p>
+  <button class="btn main next" id="n3">Дальше</button>
+</section>
+
+<!-- 4. Подарок -->
+<section class="scene" id="s4">
+  <div id="gate">
+    <h2 class="gold rise" style="--d:.2s">Твой подарок ждёт.<br>Открой рамку!</h2>
+    <div class="frame rise" style="--d:.5s" id="fr"><div class="door l"></div><div class="door r"></div><div class="seal">K</div></div>
+    <p class="lead rise" style="--d:.8s;font-size:14px">Тапни по рамке или свайпни</p>
+  </div>
+  <div id="rv">
+    <div class="poster">
+      <div class="p-top"><span>THE BIRTHDAY ISSUE</span><span>N° ∞</span></div>
+      <div class="p-mast">KAMILLA</div>
+      <div class="p-mid"><div class="ring">K</div></div>
+      <div class="p-bot"><b>HAPPY<br>BIRTHDAY</b><small>Героиня сезона.<br>Только сегодня.</small></div>
+    </div>
+    <div class="gwrap"><div class="gift" id="gift"><div class="items">
+      <span style="--x:-62px;--y:-70px;--t:.1s">💄</span><span style="--x:20px;--y:-96px;--t:.2s">🧴</span>
+      <span style="--x:-20px;--y:-40px;--t:.3s">✨</span><span style="--x:62px;--y:-58px;--t:.4s">💎</span></div>
+      <div class="gl"></div><div class="gb"></div></div>
+      <p class="lead" id="gh" style="font-size:15px">Тапни по коробке</p></div>
+    <div class="fin glass"><p class="disp gold" style="font-size:18px;margin-bottom:10px">С днём рождения, Камилла</p>
+      <p>Пусть этот год будет твоим: спокойным там, где нужно, и&nbsp;ярким там, где хочется. И&nbsp;чтобы рядом всегда были те, с&nbsp;кем легко.</p></div>
+    <div class="acts"><button class="btn main" id="th">Спасибо</button><button class="btn" id="rp">Повторить</button></div>
+  </div>
+</section>
+
+<script>
+const $=id=>document.getElementById(id), root=document.documentElement;
+
+/* Конфетти */
+function boom(){for(let i=0;i<46;i++){const s=document.createElement('i');s.className='cf';
+  s.style.cssText=`left:${Math.random()*100}vw;background:hsl(${(340+Math.random()*80)%360} 90% 65%);--x:${Math.random()*160-80}px;animation-duration:${2+Math.random()*2}s;animation-delay:${Math.random()*.4}s`;
+  document.body.appendChild(s);setTimeout(()=>s.remove(),4800)}}
+
+/* Сцены */
+const S=[...document.querySelectorAll('.scene')];let cur=0;
+const P=[{h:350,a:15,b:0,c:100,d:100},{h:338,a:85,b:5,c:5,d:95},{h:358,a:50,b:100,c:90,d:10},{h:372,a:10,b:60,c:95,d:40},{h:344,a:90,b:80,c:10,d:10},{h:252,a:50,b:0,c:50,d:100},{h:354,a:50,b:35,c:20,d:90},{h:380,a:80,b:20,c:20,d:80}];
+function pal(n){const p=P[n],t=root.style;t.setProperty('--h',p.h);t.setProperty('--x1',p.a);t.setProperty('--y1',p.b);t.setProperty('--x2',p.c);t.setProperty('--y2',p.d)}
+function rs(el){el.style.animation='none';void el.offsetWidth;el.style.animation='rise .8s both'}
+function go(n){S[cur].classList.remove('on');cur=n;S[n].classList.add('on');pal(n);
+  if(n==1)setTimeout(initScratch,60);
+  if(n==3)startGifts();
+  if(n==5)initStars();
+  if(n==6)setTimeout(()=>$('n3').classList.add('show'),4600)}
+$('go').onclick=()=>go(1);
+[['n1',2],['n4',3],['n5',4],['n6',5],['n3',7]].forEach(([b,t])=>$(b).onclick=()=>go(t));
+document.addEventListener('pointerdown',e=>{for(let i=0;i<6;i++){const s=document.createElement('i');s.className='sp';s.textContent='✦';const a=Math.random()*6.28,d=28+Math.random()*30;
+  s.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),800)}});
+
+/* Сцена 1: стираем фольгу */
+const cv=$('sc'),cx=cv.getContext('2d',{willReadFrequently:true});let done=false,down=false,lx,ly,mv=0;
+function initScratch(){
+  const d=devicePixelRatio||1,w=cv.offsetWidth,h=cv.offsetHeight;cv.width=w*d;cv.height=h*d;cx.scale(d,d);
+  const g=cx.createLinearGradient(0,0,w,h);g.addColorStop(0,'#fbeab0');g.addColorStop(.5,'#c99a3a');g.addColorStop(1,'#f3d98a');
+  cx.globalCompositeOperation='source-over';cx.fillStyle=g;cx.fillRect(0,0,w,h);
+  cx.fillStyle='rgba(60,40,5,.75)';cx.font='600 16px Unbounded,sans-serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText('Сотри пальцем',w/2,h/2);
+  cv.style.opacity=1;cv.style.pointerEvents='';done=false;mv=0;
+}
+function pos(e){const r=cv.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]}
+cv.addEventListener('pointerdown',e=>{down=true;[lx,ly]=pos(e);cv.setPointerCapture(e.pointerId);scr(e)});
+cv.addEventListener('pointermove',e=>{if(down)scr(e)});
+['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,()=>down=false));
+function scr(e){if(done)return;const[x,y]=pos(e);
+  cx.globalCompositeOperation='destination-out';cx.lineWidth=38;cx.lineCap=cx.lineJoin='round';
+  cx.beginPath();cx.moveTo(lx,ly);cx.lineTo(x+.01,y);cx.stroke();lx=x;ly=y;
+  if(++mv%6)return;
+  const a=cx.getImageData(0,0,cv.width,cv.height).data;let t=0,c=0;
+  for(let i=3;i<a.length;i+=64){t++;if(a[i]<10)c++}
+  if(c/t>.5){done=true;cv.style.opacity=0;cv.style.pointerEvents='none';boom();$('n1').classList.add('show')}}
+
+/* Свечи */
+const cake=$('cake'),CT0=$('cd-t').textContent;let bt;
+const stop=()=>{clearTimeout(bt);cake.classList.remove('bl')};
+$('blow').addEventListener('pointerdown',()=>{if(cake.classList.contains('out'))return;cake.classList.add('bl');
+  bt=setTimeout(()=>{stop();cake.classList.add('out');boom();$('cd-t').textContent='Загадано. Пусть сбудется — и желательно без квеста на три уровня сложности.';rs($('cd-t'));$('n4').classList.add('show')},1400)});
+['pointerup','pointerleave','pointercancel'].forEach(t=>$('blow').addEventListener(t,stop));
+$('blow').oncontextmenu=e=>e.preventDefault();
+
+/* Подарки */
+const GN=8,field=$('field');let got=0;
+field.innerHTML='<b class="gf">🎁</b>'.repeat(GN);
+const gfs=[...field.children];
+function spawn(g,dl){g.classList.remove('run','got');g.style.top='';void g.offsetWidth;const t=g.style;
+  t.setProperty('--l',4+Math.random()*80+'%');t.setProperty('--s',3.4+Math.random()*2.2+'s');t.setProperty('--w',dl+'s');t.setProperty('--r',Math.random()*40-20+'deg');t.fontSize=34+Math.random()*12+'px';g.classList.add('run')}
+function startGifts(){gfs.forEach((g,i)=>spawn(g,i*.55+Math.random()*.3))}
+gfs.forEach(g=>{
+  g.addEventListener('animationend',()=>{if(!g.classList.contains('got'))spawn(g,Math.random()*.6)});
+  g.addEventListener('pointerdown',()=>{if(g.classList.contains('got'))return;g.style.top=getComputedStyle(g).top;g.classList.add('got');
+    $('cnt').textContent=++got+' / '+GN;rs($('cnt'));
+    if(got==GN)setTimeout(()=>{$('s6').classList.add('done');boom();setTimeout(()=>$('n5').classList.add('show'),2000)},650)})});
+
+/* Карты */
+const CP=[['p','🍿','Идём в кино за мой счёт: ты выбираешь фильм, а попкорн — за мной.'],['g','🥂','Ужин в любом ресторане, который ты выберешь.'],['w','🌠','Любое желание на твой вкус. Говори — я организую.']],CT1=$('ct').textContent;let picked=false;
+$('fcs').innerHTML=CP.map(([k,e,t])=>`<div class="fc"><div class="in"><div class="ff">✦</div><div class="fb"><div><span class="ic ${k}">${e}</span><b>Твой приз</b>${t}</div></div></div></div>`).join('');
+const fcs=[...document.querySelectorAll('.fc')];
+fcs.forEach(c=>c.onclick=()=>{if(picked)return;picked=true;fcs.forEach(x=>x.classList.add(x==c?'pick':'dim'));c.classList.add('show');
+  $('ct').textContent='Твой приз — забирай.';rs($('ct'));setTimeout(boom,1100);
+  setTimeout(()=>{$('ct').textContent='А вот что было в остальных картах.';rs($('ct'));
+    fcs.forEach((x,i)=>{if(x!=c)setTimeout(()=>{x.querySelector('.fb b').textContent='Могло выпасть';x.classList.add('rev','show')},i*400)})},3000);
+  setTimeout(()=>$('n6').classList.add('show'),5600)});
+
+/* Звёздное небо */
+const NS='http://www.w3.org/2000/svg',hs=$('hs'),HT0=$('hint').textContent;
+const hpt=t=>[150+128*Math.pow(Math.sin(t),3),112-8*(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))];
+const HN=16,HQ=[...Array(721)].map((_,i)=>hpt(Math.PI-i*2*Math.PI/720)),HL=[0];
+for(let i=1;i<HQ.length;i++)HL[i]=HL[i-1]+Math.hypot(HQ[i][0]-HQ[i-1][0],HQ[i][1]-HQ[i-1][1]);
+const HP=[...Array(HN)].map((_,k)=>HQ[Math.max(HL.findIndex(v=>v>=HL[720]*k/HN),0)]);
+const HF='M'+[...Array(97)].map((_,i)=>hpt(Math.PI-i*Math.PI/48).map(v=>v.toFixed(1)).join(' ')).join('L')+'Z';
+let hc=-1,hlock=false,hdown=false;
+function initStars(){hc=-1;hlock=false;hdown=false;
+  let h='<defs><radialGradient id="hg"><stop offset="0" stop-color="#ffb0a0" stop-opacity=".65"/><stop offset="1" stop-color="#ff5a70" stop-opacity=".25"/></radialGradient></defs>';
+  for(let i=0;i<70;i++)h+=`<circle class="tw" cx="${(Math.random()*300).toFixed(1)}" cy="${(Math.random()*264).toFixed(1)}" r="${(.6+Math.random()*1.2).toFixed(2)}" fill="#fff" style="animation-delay:${-Math.random()*3}s"/>`;
+  h+=`<path class="hf" d="${HF}"/><g id="lns"></g><line id="rb" x1="0" y1="0" x2="0" y2="0" visibility="hidden"/>`;
+  HP.forEach((p,i)=>{const dx=150-p[0],dy=122-p[1],d=Math.hypot(dx,dy)||1;h+=`<g class="st${i?'':' nx'}" id="st${i}"><circle class="halo" cx="${p[0]}" cy="${p[1]}" r="12"/><circle class="core" cx="${p[0]}" cy="${p[1]}" r="4.5"/><text class="num" x="${(p[0]+dx/d*22).toFixed(1)}" y="${(p[1]+dy/d*22).toFixed(1)}">${i+1}</text></g>`});
+  hs.innerHTML=h;hs.classList.remove('done');$('hint').textContent=HT0}
+function addLine(a,b){const l=document.createElementNS(NS,'path');l.setAttribute('d',`M${a[0]} ${a[1]}L${b[0]} ${b[1]}`);l.setAttribute('pathLength',1);l.setAttribute('class','ln');$('lns').appendChild(l)}
+function conn(i){if(hc>=0)addLine(HP[hc],HP[i]);
+  const g=$('st'+i);g.classList.remove('nx');g.classList.add('on');hc=i;
+  if(i<HN-1)$('st'+(i+1)).classList.add('nx');
+  else{hlock=true;$('rb').setAttribute('visibility','hidden');
+    setTimeout(()=>addLine(HP[HN-1],HP[0]),250);
+    setTimeout(()=>{hs.classList.add('done');boom();$('hint').textContent='Получилось.';rs($('hint'))},1000);
+    setTimeout(()=>go(6),3800)}}
+function sp(e){const r=hs.getBoundingClientRect();return[(e.clientX-r.left)*300/r.width,(e.clientY-r.top)*264/r.height]}
+function hit(e){if(hlock)return;const[x,y]=sp(e),p=HP[hc+1];
+  if(Math.hypot(x-p[0],y-p[1])<26)conn(hc+1);
+  if(hdown&&hc>=0&&!hlock){const q=HP[hc],b=$('rb');b.setAttribute('x1',q[0]);b.setAttribute('y1',q[1]);b.setAttribute('x2',x);b.setAttribute('y2',y);b.setAttribute('visibility','visible')}}
+hs.addEventListener('pointerdown',e=>{hdown=true;hit(e)});
+hs.addEventListener('pointermove',e=>{if(hdown)hit(e)});
+['pointerup','pointercancel','pointerleave'].forEach(t=>hs.addEventListener(t,()=>{hdown=false;const b=$('rb');b&&b.setAttribute('visibility','hidden')}));
+
+/* Искры на фоне */
+for(let i=0;i<16;i++){const e=document.createElement('i');e.className='em';const z=2+Math.random()*4;
+  e.style.cssText=`left:${Math.random()*100}vw;width:${z}px;height:${z}px;--dx:${Math.random()*60-30}px;animation-duration:${9+Math.random()*10}s;animation-delay:${-Math.random()*15}s`;document.body.prepend(e)}
+
+/* Сцена 4: рамка и коробка */
+function openFrame(){const f=$('fr');if(f.classList.contains('open'))return;f.classList.add('open');boom();
+  setTimeout(()=>$('gate').classList.add('gone'),1100);
+  setTimeout(()=>{$('gate').style.display='none';$('rv').classList.add('on');$('s4').scrollTo(0,0)},1750)}
+$('fr').addEventListener('pointerup',openFrame);
+$('gift').onclick=()=>{if($('gift').classList.contains('open'))return;$('gift').classList.add('open');$('gh').textContent='Подробности — лично.';boom()};
+$('th').onclick=boom;
+$('rp').onclick=()=>{
+  ['n1','n4','n5','n6','n3'].forEach(i=>$(i).classList.remove('show'));
+  cake.classList.remove('out','bl');$('cd-t').textContent=CT0;
+  $('s6').classList.remove('done');got=0;$('cnt').textContent='0 / '+GN;gfs.forEach(g=>{g.classList.remove('got','run');g.style.top=''});
+  picked=false;fcs.forEach(c=>c.classList.remove('pick','dim','rev','show'));document.querySelectorAll('.fb b').forEach(b=>b.textContent='Твой приз');$('ct').textContent=CT1;
+  $('fr').classList.remove('open');$('gate').style.display='';$('gate').classList.remove('gone');
+  $('rv').classList.remove('on');$('gift').classList.remove('open');$('gh').textContent='Тапни по коробке';go(1)};
+</script>
+</body>
+</html>
